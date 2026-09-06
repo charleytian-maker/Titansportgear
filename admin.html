@@ -38,10 +38,41 @@ button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
 <label>Content (line breaks will convert to paragraph tags automatically)</label>
 <textarea id="content"></textarea>
 
+<input type="file" id="mediaFile" accept="image/*,video/*">
+<button onclick="uploadMedia()">上传</button>
+
+
 <button onclick="submitPost()">Publish</button>
 <div id="msg"></div>
 
 <script>
+
+async function uploadMedia() {
+  const fileInput = document.getElementById('mediaFile');
+  const file = fileInput.files[0];
+  if (!file) {
+    document.getElementById('msg').innerText = '请先选择文件';
+    return;
+  }
+  const fd = new FormData();
+  fd.append('file', file);
+
+  document.getElementById('msg').innerText = '上传中...';
+  const res = await fetch('/api/upload', { method: 'POST', body: fd });
+  const data = await res.json();
+
+  if (data.url) {
+    const tag = file.type.startsWith('video')
+      ? `<video src="${data.url}" controls></video>`
+      : `<img src="${data.url}" alt="${title || file.name}">`;
+    const contentBox = document.getElementById('content');
+    contentBox.value += `\n${tag}\n`;
+    document.getElementById('msg').innerText = '上传成功，已插入正文';
+  } else {
+    document.getElementById('msg').innerText = '上传失败：' + (data.error || '未知错误');
+  }
+}
+
 function submitPost() {
   const title = document.getElementById('title').value.trim();
   const slug = document.getElementById('slug').value.trim();
