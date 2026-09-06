@@ -1,10 +1,8 @@
 #:schema https://json.schemastore.org/wrangler.toml
 name = "titan"
 compatibility_date = "2026-06-25"
+pages_build_output_dir = "."
 
-[assets]
-directory = "." 
-not_found_handling = "none"
 [[d1_databases]]
 binding = "DB"
 database_name = "titansportgear-blog"
