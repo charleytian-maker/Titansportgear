@@ -6,7 +6,7 @@ export async function onRequestPost(context) {
 
   const ext = file.name.split('.').pop();
   const key = `blog/${Date.now()}-${crypto.randomUUID()}.${ext}`;
-  await env.ASSETS.put(key, file.stream(), {
+  await env.MEDIA.put(key, file.stream(), {
     httpMetadata: { contentType: file.type }
   });
 
