@@ -50,29 +50,39 @@ button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
 
 <script>
 async function loadPostList() {
-  const res = await fetch('/api/posts');
-  const posts = await res.json();
   const listDiv = document.getElementById('postList');
-  if (posts.length === 0) {
+  listDiv.innerHTML = 'Loading posts...';
+
+  const langs = ['en', 'de'];
+  let allPosts = [];
+
+  for (const lang of langs) {
+    const res = await fetch('/api/posts?lang=' + lang);
+    const posts = await res.json();
+    allPosts = allPosts.concat(posts);
+  }
+
+  if (allPosts.length === 0) {
     listDiv.innerHTML = '<p>No posts yet.</p >';
     return;
   }
-  listDiv.innerHTML = posts.map(p => `
+
+  listDiv.innerHTML = allPosts.map(p => `
     <div style="padding:8px 0; border-bottom:1px solid #ddd;">
-      <strong>${p.title}</strong> (${p.slug})
-      <button onclick="deletePost('${p.slug}')" style="margin-left:10px; color:red;">删除</button>
+      <strong>${p.title}</strong> [${p.lang}] (${p.slug})
+      <button onclick="deletePost('${p.slug}', '${p.lang}')" style="margin-left:10px; color:red;">删除</button>
     </div>
   `).join('');
 }
 
-async function deletePost(slug) {
+async function deletePost(slug, lang) {
   const password = document.getElementById('password').value.trim();
-  if (!confirm('确定要删除文章 "' + slug + '" 吗?')) return;
+  if (!confirm('确定要删除文章 "' + slug + '" [' + lang + '] 吗?')) return;
 
   const res = await fetch('/api/delete-post', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ slug, password })
+    body: JSON.stringify({ slug, lang, password })
   });
   const data = await res.json();
   if (data.success) {
