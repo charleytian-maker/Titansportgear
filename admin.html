@@ -79,6 +79,7 @@ function submitPost() {
   const excerpt = document.getElementById('excerpt').value.trim();
   const lang = document.getElementById('lang').value;
   let content = document.getElementById('content').value.trim();
+  const password = document.getElementById('password').value.trim();
 
   // Convert line breaks to <p> tags
   content = content.split('\n').map(p => `<p>${p.trim()}</p >`).join('');
