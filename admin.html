@@ -78,7 +78,7 @@ function submitPost() {
   const slug = document.getElementById('slug').value.trim();
   const excerpt = document.getElementById('excerpt').value.trim();
   const lang = document.getElementById('lang').value;
-  const content = document.getElementById('content').value.trim();
+  let content = document.getElementById('content').value.trim();
 
   // Convert line breaks to <p> tags
   content = content.split('\n').map(p => `<p>${p.trim()}</p >`).join('');
