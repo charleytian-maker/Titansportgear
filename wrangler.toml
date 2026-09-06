@@ -9,3 +9,7 @@ not_found_handling = "none"
 binding = "DB"
 database_name = "titansportgear-blog"
 database_id = "ab3c18f1-c794-4cf0-a024-06cd41af2946"
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "titansportgear-assets"
