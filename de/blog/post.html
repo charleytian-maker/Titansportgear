@@ -40,12 +40,18 @@
 <script src="/load-footer.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded",function(){
-    let deLink = document.querySelector('.lang-de');
-    let enLink = document.querySelector('.lang-en');
-    if(deLink) deLink.href = "/de/blog/post";
-    if(enLink) enLink.href = "/blog/post";
-})
+function fixLangLinks(){
+  let deLink = document.querySelector('#lang-de');
+  let enLink = document.querySelector('#lang-en');
+  if(deLink && enLink){
+    deLink.href = "/de/blog/post";
+    enLink.href = "/blog/post";
+    return;
+  }
+  setTimeout(fixLangLinks,80);
+}
+fixLangLinks();
+
 const params = new URLSearchParams(window.location.search);
 const slug = params.get('slug');
 const lang = params.get('lang') || 'de';
@@ -69,8 +75,8 @@ if(!metaDesc){
   document.head.appendChild(metaDesc);
 }
   metaDesc.content = post.excerpt || "";
-  document.querySelector('.lang-de').href = `/de/blog/post?slug=${slug}`;
-  document.querySelector('.lang-en').href = `/blog/post?slug=${slug}`;
+  document.querySelector('#lang-de').href = `/de/blog/post?slug=${slug}`;
+  document.querySelector('#lang-en').href = `/blog/post?slug=${slug}`;
   document.querySelector('link[hreflang="de"]').href = `/de/blog/post?slug=${slug}`;
   document.querySelector('link[hreflang="en"]').href = `/blog/post?slug=${slug}`;
   document.querySelector('link[hreflang="x-default"]').href = `/blog/post?slug=${slug}`;
