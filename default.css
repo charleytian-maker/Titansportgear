@@ -1889,16 +1889,15 @@ ul.contact li a.icon-rss:before
 	margin-top: -0.5em;
 }
 
-#logo h1
-{
-	display: inline-block;
-	background: #87cefa;
-	padding: 0.50em 1em;
-	border-radius: 60px;
-	font-size: 2.5em;
-	text-transform: uppercase;
-	font-weight: 900;
-	color: #FFF;
+#logo h1, #logo h2 {
+  display: inline-block;
+  background: #87cefa;
+  padding: 0.50em 1em;
+  border-radius: 60px;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #FFF;
 }
 
 #logo a
