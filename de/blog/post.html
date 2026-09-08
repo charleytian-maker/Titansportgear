@@ -40,6 +40,12 @@
 <script src="/load-footer.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded",function(){
+    let deLink = document.querySelector('.lang-de');
+    let enLink = document.querySelector('.lang-en');
+    if(deLink) deLink.href = "/de/blog/post";
+    if(enLink) enLink.href = "/blog/post";
+})
 const params = new URLSearchParams(window.location.search);
 const slug = params.get('slug');
 const lang = params.get('lang') || 'de';
