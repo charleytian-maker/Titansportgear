@@ -61,9 +61,9 @@ if(!metaDesc){
   document.head.appendChild(metaDesc);
 }
   metaDesc.content = post.excerpt || "";
-  document.querySelector('.lang-de').href = `/de/post?slug=${slug}`;
+  document.querySelector('.lang-de').href = `/de/blog/post?slug=${slug}`;
   document.querySelector('.lang-en').href = `/blog/post?slug=${slug}`;
-  document.querySelector('link[hreflang="de"]').href = `/de/post?slug=${slug}`;
+  document.querySelector('link[hreflang="de"]').href = `/de/blog/post?slug=${slug}`;
   document.querySelector('link[hreflang="en"]').href = `/blog/post?slug=${slug}`;
   document.querySelector('link[hreflang="x-default"]').href = `/blog/post?slug=${slug}`;
 
