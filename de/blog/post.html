@@ -7,7 +7,7 @@
 <link rel="alternate" hreflang="x-default" href="https://titansportgear.com/blog/post">  
 <meta charset="utf-8">
 <title id="page-title">Blog</title>
-<link rel="stylesheet" href="../../default.css">
+<link rel="stylesheet" href="/default.css">
 <style>
   .blog-post img,
   .blog-post video {
@@ -23,8 +23,8 @@
 </head>
 <body>
 <div id="header-placeholder"></div>
-<script src="../../load-header.js"></script>
-<script src="../../script.js"></script>
+<script src="/load-header.js"></script>
+<script src="/script.js"></script>
 <div id="page" class="container">
   <div id="content">
     <div class="title">
@@ -37,7 +37,7 @@
 </div>
 
 <div id="footer-placeholder"></div>
-<script src="../../load-footer.js"></script>
+<script src="/load-footer.js"></script>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -62,7 +62,12 @@ if(!metaDesc){
   metaDesc.name="description";
   document.head.appendChild(metaDesc);
 }
-  metaDesc.content = post.excerpt;
+  metaDesc.content = post.excerpt || "";
+  document.querySelector('.lang-de').href = `/de/post?slug=${slug}`;
+  document.querySelector('.lang-en').href = `/blog/post?slug=${slug}`;
+  document.querySelector('link[hreflang="de"]').href = `/de/post?slug=${slug}`;
+  document.querySelector('link[hreflang="en"]').href = `/blog/post?slug=${slug}`;
+  document.querySelector('link[hreflang="x-default"]').href = `/blog/post?slug=${slug}`;
   })
   
   .catch(err => {
