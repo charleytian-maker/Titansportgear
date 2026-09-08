@@ -6,9 +6,9 @@
     </div>
     <div id="menu">
       <ul>
-        <li class="current_page_item"><a href="index.html" accesskey="1" title="">Home</a ></li>
+        <li class="current_page_item"><a href="/index.html" accesskey="1" title="">Home</a ></li>
         <li class="dropdown-item">
-          <a href="index.html" accesskey="2" title="">Products</a >
+          <a href="/index.html" accesskey="2" title="">Products</a >
           <!-- 这里是下拉菜单的子项 -->
           <div class="my-dropdown-menu">
             <a href="/Pickleball.html">Pickleball</a >
